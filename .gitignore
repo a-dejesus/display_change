@@ -4,5 +4,9 @@
 # Ignore executables
 *.exe
 
+# Generated log files
+*log
+
 # Ignore directories
 .vscode/
+html docs/

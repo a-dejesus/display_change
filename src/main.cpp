@@ -8,28 +8,6 @@
 
 #define DEVICETOTAL 2
 
-int main()
-{
-    bool tvOn = false;
-    tvOn = GetDisplayInfo();
-
-    // with the info from device 3, determine if TV is on or monitors are on
-    // for my own peace of mind, lets just change monitors 2 and 3 
-    if (tvOn)
-    {
-        // change to 2 monitors
-        // turn off monitor 3
-        // turn on display 2
-    }
-    else
-    {
-        // change to TV
-        // Turn off monitor 2
-        // Turn on monitor 3 one with biggest pixel size
-    }
-    return 0;
-}
-
 bool GetDisplayInfo() // prints info for each device
 {
     DISPLAY_DEVICE displayDevice;
@@ -59,6 +37,7 @@ bool GetDisplayInfo() // prints info for each device
                 std::cout << "Frequency, in hertz (cycles per second)" << devMode.dmDisplayFrequency << std::endl;
                 std::cout << "Positional coordinates of the display device" << devMode.dmPosition.x << devMode.dmPosition.y << std::endl;
                 std::cout << "Rotation, 0 degrees 0, 90 degrees 1, etc." << devMode.dmDisplayOrientation << std::endl;
+                
             }
             else
             {
@@ -70,5 +49,27 @@ bool GetDisplayInfo() // prints info for each device
             std::cerr << "Failed to enumerate display devices." << std::endl;
         }
     }
+    return false;
 }
 
+int main()
+{
+    bool tvOn = false;
+    tvOn = GetDisplayInfo();
+
+    // with the info from device 3, determine if TV is on or monitors are on
+    // for my own peace of mind, lets just change monitors 2 and 3 
+    if (tvOn)
+    {
+        // change to 2 monitors
+        // turn off monitor 3
+        // turn on display 2
+    }
+    else
+    {
+        // change to TV
+        // Turn off monitor 2
+        // Turn on monitor 3 one with biggest pixel size
+    }
+    return 0;
+}
