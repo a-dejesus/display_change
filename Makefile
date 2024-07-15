@@ -1,7 +1,7 @@
 # Directories
 SRCDIR = src
-INCDIR = admin_prompt
 BINDIR = bin
+DOCDIR = docs
 
 # Executable
 TARGET = $(BINDIR)/display_change 
@@ -9,12 +9,10 @@ TARGET = $(BINDIR)/display_change
 # Source files 
 # wildcard walks through all .cpp files
 CPPSOURCES = $(wildcard $(SRCDIR)/*.cpp)
-RCSOURCES = $(wildcard $(INCDIR)/*.rc)
 
 # Object files
 # first arg is the the cpp's in src
-# second arg is the .rc in admin_prompt
-OBJECTS = $(CPPSOURCES:$(SRCDIR)/%.cpp=$(BINDIR)/%.o) $(RCSOURCES:$(INCDIR)/%.rc=$(BINDIR)/%.o) 
+OBJECTS = $(CPPSOURCES:$(SRCDIR)/%.cpp=$(BINDIR)/%.o)
 
 # Compiler flags
 # -Wall is all compiler warnings
@@ -42,11 +40,6 @@ $(BINDIR)/%.o: $(SRCDIR)/%.cpp | $(BINDIR)
 	g++ $(CXXFLAGS) -c $< -o $@
 	@echo
 
-$(BINDIR)/%.o: $(INCDIR)/%.rc | $(BINDIR)
-	@echo "Compiling RCs $< $(shell date +%s)"
-	windres $< -O coff -o $@
-	@echo
-
 # Create bin directory if it doesn't exist
 $(BINDIR):
 	mkdir -p $(BINDIR)
@@ -56,7 +49,7 @@ clean:
 	@echo
 	@echo "Cleaning up... "
 	rm -rf $(BINDIR)/*.o $(TARGET)
-	rm -rf html docs
+	rm -rf docs
 	rm -f doxygen.log
 	@echo
 

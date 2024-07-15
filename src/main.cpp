@@ -4,9 +4,11 @@
  */
 
 #include <iostream>
+#include <bitset>
+
 #include <windows.h>
 
-#define DEVICETOTAL 2
+#define DEVICETOTAL 3
 
 bool GetDisplayInfo() // prints info for each device
 {
@@ -21,32 +23,32 @@ bool GetDisplayInfo() // prints info for each device
     {
         if(EnumDisplayDevices(NULL, deviceIndex, &displayDevice, 0)) 
         {
-            EnumDisplayDevices(displayDevice.DeviceName, deviceIndex, &displayDevice, 0);
-            std::cout << "Device Name" << displayDevice.DeviceName << std::endl;
-            std::cout << "Device String" << displayDevice.DeviceString << std::endl;
-            std::cout << "State Flags" << displayDevice.StateFlags << std::endl;
-            std::cout << "DeviceID" << displayDevice.DeviceID << std::endl;
-            std::cout << "DeviceKey" << displayDevice.DeviceKey << std::endl;
-
+            std::cout << "\nEnumDisplayDevices:                               " << std::endl;
+            std::cout << "Device Name                                       " << displayDevice.DeviceName << std::endl;
+            std::cout << "Device String                                     " << displayDevice.DeviceString << std::endl;
+            std::cout << "State Flags                                       " << std::bitset<8>(displayDevice.StateFlags) << std::endl;
+            std::cout << "DeviceID                                          " << displayDevice.DeviceID << std::endl;
+            std::cout << "DeviceKey                                         " << displayDevice.DeviceKey << std::endl;
+            
             if(EnumDisplaySettingsEx(displayDevice.DeviceName, ENUM_CURRENT_SETTINGS, &devMode, 0))
             {
-                std::cout << "Color resolution, in bits per pixel" << devMode.dmBitsPerPel << std::endl;
-                std::cout << "Width, in pixels, of the visible device surface" << devMode.dmPelsWidth << std::endl;
-                std::cout << "Height, in pixels, of the visible device surface." << devMode.dmPelsHeight << std::endl;
-                std::cout << "Display mode." << devMode.dmDisplayFlags << std::endl;
-                std::cout << "Frequency, in hertz (cycles per second)" << devMode.dmDisplayFrequency << std::endl;
-                std::cout << "Positional coordinates of the display device" << devMode.dmPosition.x << devMode.dmPosition.y << std::endl;
-                std::cout << "Rotation, 0 degrees 0, 90 degrees 1, etc." << devMode.dmDisplayOrientation << std::endl;
-                
+                std::cout << "\nEnumDisplaySettingsEx:                            " << std::endl;
+                std::cout << "Color resolution, in bits per pixel               " << devMode.dmBitsPerPel << std::endl;
+                std::cout << "Width, in pixels, of the visible device surface   " << devMode.dmPelsWidth << std::endl;
+                std::cout << "Height, in pixels, of the visible device surface  " << devMode.dmPelsHeight << std::endl;
+                std::cout << "Display mode.                                     " << devMode.dmDisplayFlags << std::endl;
+                std::cout << "Frequency, in hertz (cycles per second)           " << devMode.dmDisplayFrequency << std::endl;
+                std::cout << "Positional coordinates of the display device      " << devMode.dmPosition.x << devMode.dmPosition.y << std::endl;
+                std::cout << "Rotation, 0 degrees 0, 90 degrees 1, etc          " << devMode.dmDisplayOrientation << std::endl;
             }
             else
             {
-                std::cerr << "Failed to return display info." << std::endl;
+                std::cerr << "Failed to return display settings." << std::endl;
             }
-        } 
+        }
         else
         {
-            std::cerr << "Failed to enumerate display devices." << std::endl;
+            std::cerr << "Failed to identify display info." << std::endl;
         }
     }
     return false;

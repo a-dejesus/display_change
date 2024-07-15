@@ -10,3 +10,4 @@
 # Ignore directories
 .vscode/
 html docs/
+admin_prompt/

@@ -1,0 +1,2 @@
+Make the project work without setting the amount of displays 
+    To detect how many monitors a system has, you can call EnumDisplayDevices in a loop until it fails, then use the last value to succeed to avoid having to do it manually
