@@ -25,3 +25,11 @@ EnumDisplaySettingsEx
 
 Change Display Settings Function
     https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-changedisplaysettingsexa
+    Function parameters
+    LONG ChangeDisplaySettingsExA(
+    [in] LPCSTR   lpszDeviceName,
+    [in] DEVMODEA *lpDevMode,
+        HWND     hwnd,
+    [in] DWORD    dwflags,
+    [in] LPVOID   lParam
+    );

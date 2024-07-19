@@ -9,5 +9,5 @@
 
 # Ignore directories
 .vscode/
-html docs/
+docs/
 admin_prompt/

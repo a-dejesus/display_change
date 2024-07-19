@@ -33,7 +33,7 @@ $(TARGET): $(OBJECTS)
 	g++ $(OBJECTS) -o $(TARGET) $(LDFLAGS)
 	@echo
 
-# Rules for compiling CPP and RC filetypes
+# Rules for compiling CPP filetypes
 $(BINDIR)/%.o: $(SRCDIR)/%.cpp | $(BINDIR)
 	@echo
 	@echo "Compiling CPPs $< $(shell date +%s)"

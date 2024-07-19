@@ -6,3 +6,12 @@
 
 Next Task
     - experiment with changedisplaysettings, add single click functionallity
+    - add doxygen comments
+
+7/16/2024
+    - added class structure to make display changing portable for other projects
+    - added doxygen comments
+    
+7/18/2024
+    - added state machine, function to return status for display 3
+    - the display numbers can be rearranged, going to base decisions off of what is turned on, identify monitors by screen resolution width since they all differ 
